@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main-layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sach mon an</title>
+</head>
+<body>
+<section class="panel" layout:fragment="content">
+    <h2 class="section-title">Thuc don nha hang</h2>
+
+    <p class="section-subtitle" th:text="'So mon an: ' + ${#lists.size(dishes)}">So mon an: 0</p>
+
+    <div class="message error" th:if="${errorMessage}" th:text="${errorMessage}">
+        Khong tim thay mon an yeu cau!
+    </div>
+
+    <div class="message success" th:if="${successMessage}" th:text="${successMessage}">
+        Cap nhat mon an thanh cong!
+    </div>
+
+    <div th:if="${dishes == null or #lists.isEmpty(dishes)}">
+        <p class="section-subtitle">Hien tai nha hang dang cap nhat thuc don, vui long quay lai sau.</p>
+    </div>
+
+    <table th:unless="${dishes == null or #lists.isEmpty(dishes)}">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ten mon</th>
+            <th>Gia</th>
+            <th>Trang thai</th>
+            <th>Hanh dong</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="dish : ${dishes}">
+            <td th:text="${dish.id}">1</td>
+            <td th:text="${dish.name}">Ten mon</td>
+            <td th:text="${dish.price}">0</td>
+            <td th:text="${dish.available ? 'Con hang' : 'Het hang'}"
+                th:classappend="${dish.available ? 'available' : 'unavailable'}">
+                Trang thai
+            </td>
+            <td>
+                <a class="action-link" th:href="@{|/bai4/edit/${dish.id}|}">Chinh sua</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+</body>
+</html>

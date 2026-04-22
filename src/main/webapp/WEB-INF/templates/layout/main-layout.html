@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="vi"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title layout:title-pattern="$CONTENT_TITLE - Nha hang ABC">Nha hang ABC</title>
+    <style>
+        :root {
+            --brand: #c46a2d;
+            --brand-dark: #8f4313;
+            --surface: #fffaf4;
+            --surface-strong: #ffffff;
+            --text: #2f241d;
+            --muted: #7a685c;
+            --line: #e7d8ca;
+            --success-bg: #eaf7ea;
+            --success-text: #1d6f42;
+            --error-bg: #fdeaea;
+            --error-text: #a12622;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: var(--text);
+            background: linear-gradient(180deg, #fff8ef 0%, #f7f0e7 100%);
+        }
+
+        .site-shell {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .site-header {
+            background: linear-gradient(135deg, var(--brand-dark), var(--brand));
+            color: #fff;
+            padding: 20px 32px;
+            box-shadow: 0 8px 20px rgba(143, 67, 19, 0.18);
+        }
+
+        .header-inner,
+        .footer-inner,
+        .page-content {
+            width: min(1040px, calc(100% - 32px));
+            margin: 0 auto;
+        }
+
+        .brand {
+            margin: 0;
+            font-size: 28px;
+            letter-spacing: 1px;
+        }
+
+        .brand-subtitle {
+            margin: 6px 0 0;
+            opacity: 0.9;
+        }
+
+        .page-content {
+            flex: 1;
+            padding: 32px 0;
+        }
+
+        .panel {
+            background: var(--surface-strong);
+            border: 1px solid rgba(231, 216, 202, 0.9);
+            border-radius: 16px;
+            box-shadow: 0 12px 30px rgba(74, 49, 31, 0.08);
+            padding: 28px;
+        }
+
+        .section-title,
+        .section-subtitle {
+            text-align: center;
+        }
+
+        .section-title {
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+
+        .section-subtitle {
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .message {
+            width: min(720px, 100%);
+            margin: 12px auto;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .message.error {
+            background: var(--error-bg);
+            color: var(--error-text);
+        }
+
+        .message.success {
+            background: var(--success-bg);
+            color: var(--success-text);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid var(--line);
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background: var(--surface);
+        }
+
+        .available {
+            color: #157347;
+            font-weight: bold;
+        }
+
+        .unavailable {
+            color: #b02a37;
+            font-weight: bold;
+        }
+
+        .action-link,
+        .btn {
+            display: inline-block;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 16px;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .action-link,
+        .btn-primary {
+            background: #0d6efd;
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: #fff;
+        }
+
+        .form-card {
+            width: min(460px, 100%);
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font: inherit;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .site-footer {
+            margin-top: 24px;
+            background: #33261f;
+            color: #f8ede5;
+            padding: 18px 32px;
+        }
+
+        .footer-inner {
+            text-align: center;
+        }
+
+        .footer-inner p {
+            margin: 4px 0;
+        }
+
+        @media (max-width: 640px) {
+            .site-header,
+            .site-footer {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+
+            .panel {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="site-shell">
+    <header class="site-header">
+        <div class="header-inner">
+            <h1 class="brand">Nha hang ABC</h1>
+            <p class="brand-subtitle">Thuc don tuoi moi moi ngay</p>
+        </div>
+    </header>
+
+    <main class="page-content">
+        <div layout:fragment="content">
+            <section class="panel">
+                <h2 class="section-title">Noi dung mac dinh</h2>
+                <p class="section-subtitle">Trang con se chen noi dung tai day.</p>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p>Dia chi: 123 Duong Am Thuc, Quan 1, TP. Ho Chi Minh</p>
+            <p>Hotline: 0909 123 456 | Email: lienhe@nhahangabc.vn</p>
+        </div>
+    </footer>
+</div>
+</body>
+</html>
